@@ -1,0 +1,55 @@
+{
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true
+  },
+  "extends": ["eslint:recommended", "prettier"],
+  "parser": "babel-eslint",
+  "plugins": ["react", "prettier"],
+  "globals": {
+    "device": false,
+    "expect": false,
+    "waitFor": false,
+    "element": false,
+    "by": false,
+    "describe": false,
+    "it": false,
+    "before": false,
+    "React": true,
+    "google": true,
+    "mount": true,
+    "mountWithRouter": true,
+    "shallow": true,
+    "shallowWithRouter": true,
+    "context": true,
+    "jsdom": true,
+    "JSX": true
+  },
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true,
+      "modules": true
+    }
+  },
+  "rules": {
+    "prettier/prettier": [
+      "error",
+      {
+        "trailingComma": "all",
+        "singleQuote": true,
+        "tabWidth": 2,
+        "useTabs": false,
+        "semi": false,
+        "printWidth": 80
+      }
+    ],
+    "react/jsx-uses-react": 1,
+    "react/jsx-uses-vars": 1,
+    "semi": [2, "never"],
+    "arrow-body-style": "off",
+    "no-console": "warn",
+    "import/prefer-default-export": "off",
+    "react/sort-comp": "off"
+  }
+}
