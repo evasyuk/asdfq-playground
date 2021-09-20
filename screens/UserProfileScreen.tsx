@@ -1,24 +1,34 @@
-import * as React from 'react';
-import { StyleSheet } from 'react-native';
+import * as React from 'react'
+import { Dimensions, StyleSheet } from 'react-native'
+// import Avatar from 'react-avatar'
 
-import EditScreenInfo from '../components/EditScreenInfo';
-import { Text, View } from '../components/Themed';
+import { Input, View } from '../components/Themed'
+import { FontAwesome } from '@expo/vector-icons'
 
 export default function Jobs() {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Tab Two</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="/screens/TabTwoScreen.tsx" />
+      {/*<Avatar name="User Profile" />*/}
+
+      <FontAwesome name="user" size={100} style={{ marginRight: 15 }} />
+
+      <Input placeholder="Name" />
+      <Input placeholder="Surname" />
+
+      <View
+        style={styles.separator}
+        lightColor="#eee"
+        darkColor="rgba(255,255,255,0.1)"
+      />
     </View>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
+    paddingTop: 30,
   },
   title: {
     fontSize: 20,
@@ -27,6 +37,6 @@ const styles = StyleSheet.create({
   separator: {
     marginVertical: 30,
     height: 1,
-    width: '80%',
+    width: Dimensions.get('window').width - 2 * 30,
   },
-});
+})

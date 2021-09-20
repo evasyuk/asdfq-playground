@@ -4,11 +4,11 @@
     "slug": "asdfq-mobile",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/logo_asdfq.png",
     "scheme": "asdfq",
     "userInterfaceStyle": "automatic",
     "splash": {
-      "image": "./assets/images/splash.png",
+      "image": "./assets/images/logo_asdfq.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -24,13 +24,13 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "foregroundImage": "./assets/images/logo_asdfq.png",
         "backgroundColor": "#ffffff"
       },
       "package": "com.android.asdfq.playground"
     },
     "web": {
-      "favicon": "./assets/images/favicon.png"
+      "favicon": "./assets/images/logo_asdfq.png"
     }
   }
 }
