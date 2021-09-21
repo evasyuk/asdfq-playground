@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { createContext } from 'react'
-import { User } from './index'
+import { CarOptions, PropertyOptions, User, UserOptions } from './index'
 
 type UserProviderContextResultType = {
   user: User
@@ -14,7 +14,12 @@ const UserDefault = {
   surname: '',
 
   photo: '',
-  skills: [],
+  skills: [
+    UserOptions.MOTORCYCLE_ISSURANCE,
+    CarOptions.MOTORCYCLE,
+    PropertyOptions.HOUSE,
+    PropertyOptions.GARAGE,
+  ],
 }
 
 export const UserProviderContext = createContext<UserProviderContextResultType>(

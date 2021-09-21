@@ -1,12 +1,12 @@
-/* eslint-disable prettier/prettier */
 import React, { useContext } from 'react'
 import { createContext } from 'react'
-import {useJobProvider} from "./JobProvider"
-import {useUserProvider} from "./UserProvider"
+import { useJobProvider } from './JobProvider'
+import { useUserProvider } from './UserProvider'
+import { Job, User } from './index'
 
 type MatchProviderContextResultType = {
-  mathced: any[];
-  unmatched: any[];
+  matched: Job[]
+  unmatched: Job[]
 }
 
 type Props = { children: JSX.Element }
@@ -14,27 +14,42 @@ type MatchProviderType = (props: Props) => JSX.Element
 
 export const MatchProviderContext =
   createContext<MatchProviderContextResultType>({
-    mathced: [],
+    matched: [],
     unmatched: [],
   })
 
-const getMatchUnmatch = (user, jobs) => {
-  // TODO: do some work
+export const getMatchUnmatch = (user: User, jobs: Job[]) => {
+  const matched: Job[] = []
+  const unmatched: Job[] = []
+
+  jobs.forEach((job) => {
+    const jobMatchedSuccssfully = job.mandatorySkills
+      .map((mandatorySkill) =>
+        user.skills.find((userSkill) => userSkill === mandatorySkill),
+      )
+      .filter((possiblyMatchedSkill) => possiblyMatchedSkill)
+
+    if (jobMatchedSuccssfully) {
+      matched.push(job)
+    } else {
+      unmatched.push(job)
+    }
+  })
 
   return {
-    mathced: [],
-    unmatched: []
+    matched,
+    unmatched,
   }
 }
 
 export const MatchProvider: MatchProviderType = ({ children }) => {
-  const jobs = useJobProvider()
-  const user = useUserProvider()
+  const { jobs } = useJobProvider()
+  const { user } = useUserProvider()
 
-  const { mathced, unmatched } = getMatchUnmatch(user, jobs)
+  const { matched, unmatched } = getMatchUnmatch(user, jobs)
 
   return (
-    <MatchProviderContext.Provider value={{ mathced, unmatched }}>
+    <MatchProviderContext.Provider value={{ matched, unmatched }}>
       {children}
     </MatchProviderContext.Provider>
   )

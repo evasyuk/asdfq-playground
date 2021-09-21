@@ -31,7 +31,8 @@
     "shallowWithRouter": true,
     "context": true,
     "jsdom": true,
-    "JSX": true
+    "JSX": true,
+    "enum": true
   },
   "parserOptions": {
     "ecmaFeatures": {
