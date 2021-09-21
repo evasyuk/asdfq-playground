@@ -1,4 +1,3 @@
-import * as React from 'react'
 import { StyleSheet } from 'react-native'
 
 import EditScreenInfo from '../components/EditScreenInfo'
@@ -7,7 +6,7 @@ import { RootTabScreenProps } from '../types'
 
 export default function MatchingScreen({
   navigation,
-}: RootTabScreenProps<'TabOne'>) {
+}: RootTabScreenProps<'MatchingTab'>) {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Tab One</Text>

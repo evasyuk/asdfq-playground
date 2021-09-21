@@ -32,7 +32,8 @@
     "context": true,
     "jsdom": true,
     "JSX": true,
-    "enum": true
+    "enum": true,
+    "namespace": true
   },
   "parserOptions": {
     "ecmaFeatures": {

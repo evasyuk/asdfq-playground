@@ -31,12 +31,14 @@ const abstractSkillMatcher = (
 }
 
 test('Check one match', () => {
+  console.log('UserOptions', UserOptions)
+
   const { user, jobs } = abstractSkillMatcher(
     [UserOptions.CAR_ISSURANCE],
     [UserOptions.CAR_ISSURANCE],
   )
 
-  const { matched, unmatched } = getMatchUnmatch(user, jobs)
+  const { matched } = getMatchUnmatch(user, jobs)
 
   expect(matched.length).toEqual(1)
 })

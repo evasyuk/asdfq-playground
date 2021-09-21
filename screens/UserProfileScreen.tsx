@@ -1,4 +1,3 @@
-import * as React from 'react'
 import { Dimensions, StyleSheet } from 'react-native'
 // import Avatar from 'react-avatar'
 

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 import { createContext } from 'react'
 import { useJobProvider } from './JobProvider'
 import { useUserProvider } from './UserProvider'

@@ -1,4 +1,3 @@
-import React from 'react'
 import { UserProvider } from './UserProvider'
 import { JobProvider } from './JobProvider'
 import { MatchProvider } from './MatchProvider'
