@@ -3,7 +3,26 @@ import { UserProvider } from './UserProvider'
 import { JobProvider } from './JobProvider'
 import { MatchProvider } from './MatchProvider'
 
-const Providers = ({ chilldren }: { chilldren: JSX.Element }) => {
+export type User = {
+  name: string
+  surname: string
+
+  photo: string
+
+  skills: []
+}
+
+export type Job = {
+  companyName: string
+  companyLogo: string
+
+  shortDescription: string
+  longDescription: string
+
+  mandatorySkills: []
+}
+
+const Providers = ({ chilldren }: { chilldren: JSX.Element }): JSX.Element => {
   return (
     <UserProvider>
       <JobProvider>

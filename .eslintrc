@@ -1,12 +1,19 @@
 {
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "@typescript-eslint", "react", "prettier"
+  ],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
   "env": {
     "browser": true,
     "es6": true,
     "node": true
   },
-  "extends": ["eslint:recommended", "prettier"],
-  "parser": "babel-eslint",
-  "plugins": ["react", "prettier"],
   "globals": {
     "device": false,
     "expect": false,

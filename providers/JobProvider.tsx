@@ -1,8 +1,9 @@
 import React, { useContext } from 'react'
 import { createContext } from 'react'
+import { Job } from './'
 
 type JobProviderContextResultType = {
-  jobs: any[]
+  jobs: Job[]
 }
 
 type Props = { children: JSX.Element }
