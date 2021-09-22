@@ -1,25 +1,14 @@
 import { FlatList, StyleSheet } from 'react-native'
 
 import { View } from '../../components/Themed'
-import { useMatchProvider } from '../../providers/MatchProvider'
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback } from 'react'
 import { NoDataToShow } from '../../providers/NoDataToShow'
 import { JobListItem, JobListItemType, keyExtractor } from '../../components/JobListItem'
-import { useNavigation } from '@react-navigation/native'
-import { SwitchMatchingButton } from './SwitchMatchingButton'
+import { useJobProvider } from '../../providers/JobProvider'
+import { FloatActionButton } from '../../components/FloatActionButton'
 
-export default function MatchingScreen() {
-  const [isMatchMode, setMatchMode] = useState(true)
-  const { matched, unmatched } = useMatchProvider()
-  const { setOptions } = useNavigation()
-
-  useEffect(() => {
-    setOptions({
-      headerRight: () => <SwitchMatchingButton isTrue={isMatchMode} onPress={() => setMatchMode((old) => !old)} />,
-    })
-  }, [isMatchMode])
-
-  const data = isMatchMode ? matched : unmatched
+export default (): JSX.Element => {
+  const { jobs: data } = useJobProvider()
 
   const renderItem = useCallback(
     (params: JobListItemType) => <JobListItem onPress={() => console.log('?')} {...params} />,
@@ -30,6 +19,8 @@ export default function MatchingScreen() {
     return (
       <View style={styles.container}>
         <NoDataToShow />
+
+        <FloatActionButton onPress={() => console.log('? ?')} />
       </View>
     )
   }
@@ -38,6 +29,8 @@ export default function MatchingScreen() {
     <View style={styles.container}>
       <View style={[styles.container]}>
         <FlatList data={data} renderItem={renderItem} keyExtractor={keyExtractor} />
+
+        <FloatActionButton onPress={() => console.log('? ?')} />
       </View>
     </View>
   )

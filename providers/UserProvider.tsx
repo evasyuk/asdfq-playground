@@ -51,9 +51,11 @@ export const UserProvider: ViewWrapperProps = ({ children }) => {
     const removeSkill = (oldArray: Array<SkillOption>) => {
       const newArray = oldArray.slice()
       const index = newArray.indexOf(skill)
+
       if (index > -1) {
         newArray.splice(index, 1)
       }
+
       return newArray
     }
 
@@ -63,7 +65,10 @@ export const UserProvider: ViewWrapperProps = ({ children }) => {
   }
 
   useEffect(() => {
-    getInitialState().then(setLocalUser)
+    setLoading(true)
+    getInitialState()
+      .then(setLocalUser)
+      .finally(() => setLoading(false))
   }, [])
 
   useEffect(() => {

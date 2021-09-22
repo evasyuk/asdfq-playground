@@ -24,7 +24,9 @@ export const getMatchUnmatch = (user: User, jobs: Job[]): MatchProviderContextRe
     return acc
   }, {})
 
-  jobs.forEach((job) => {
+  console.log('jobs', jobs)
+
+  jobs?.forEach((job) => {
     const missingMatch = job.mandatorySkills.find((mandatorySkill) => !userSkillObj[mandatorySkill])
 
     if (!missingMatch) {

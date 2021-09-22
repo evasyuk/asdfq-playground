@@ -1,11 +1,11 @@
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import { Dimensions, StyleSheet } from 'react-native'
 
-import { Job } from '../../providers'
-import { Text, View } from '../../components/Themed'
-import LayoutConst from '../../constants/Layout'
+import { Job } from '../providers'
+import { Text, View } from './Themed'
+import LayoutConst from '../constants/Layout'
 import { useMemo } from 'react'
-import { Avatar } from '../../components/Avatar'
+import { Avatar } from './Avatar'
 
 const width = Dimensions.get('window').width
 

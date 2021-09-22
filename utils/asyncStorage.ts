@@ -2,6 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 
 export enum StorageKey {
   USER = 'user',
+  JOBS = 'jobs',
 }
 
 export async function setItemAsync(key: StorageKey, value: string): Promise<void> {

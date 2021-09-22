@@ -1,97 +1,95 @@
-import { createContext, useContext } from 'react'
-import { CarOptions, Job, PropertyOptions, UserOptions } from './'
+import { createContext, useContext, useEffect, useState } from 'react'
+import { Job } from './'
 import { ViewWrapperProps } from '../types'
+import { getItemAsync, setItemAsync, StorageKey } from '../utils/asyncStorage'
+import usePrevious from 'react-use/lib/usePrevious'
 
 type JobProviderContextResultType = {
+  loading: boolean
+
   jobs: Job[]
+
+  addNewJob: (Job) => void
+  removeJob: (Job) => void
 }
 
-const DefaultJobs = [
-  {
-    jobId: 'random' + Math.ceil(Math.random() * 10000000),
+const getInitialState = async (): Promise<Job[]> => {
+  const encodedJobs = (await getItemAsync<string>(StorageKey.JOBS)) || '[]'
 
-    companyName: 'companyName',
-    companyLogo: 'companyLogo',
+  return JSON.parse(encodedJobs) as Job[]
+}
 
-    address: {
-      name: 'Case street, Illinois',
-    },
+export const JobProviderContext = createContext<JobProviderContextResultType | null>(null)
 
-    shortDescription: 'shortDescription shortDescription shortDescription',
-    longDescription: 'longDescription longDescription longDescription longDescription',
+const addNewJobToArray = (job: Job, oldArray: Job[]) => {
+  const newArray = oldArray.slice()
 
-    mandatorySkills: [
-      UserOptions.MOTORCYCLE_ISSURANCE,
-      CarOptions.MOTORCYCLE,
-      PropertyOptions.HOUSE,
-      PropertyOptions.GARAGE,
-    ],
-  },
-  {
-    jobId: 'random' + Math.ceil(Math.random() * 10000000),
+  newArray.push(job)
 
-    companyName: 'ABBYY',
-    companyLogo: 'ABBYY',
+  return newArray
+}
 
-    address: {
-      name: 'Lincoln St, NY',
-    },
+const removeJobFromArray = (job: Job, oldArray: Job[]) => {
+  const newArray = oldArray.slice()
+  const index = newArray.indexOf(job)
 
-    shortDescription: 'shortDescription shortDescription shortDescription',
-    longDescription: 'longDescription longDescription longDescription longDescription',
+  if (index > -1) {
+    newArray.splice(index, 1)
+  }
 
-    mandatorySkills: [
-      UserOptions.MOTORCYCLE_ISSURANCE,
-      CarOptions.MOTORCYCLE,
-      PropertyOptions.HOUSE,
-      PropertyOptions.GARAGE,
-    ],
-  },
-  {
-    jobId: 'random' + Math.ceil(Math.random() * 10000000),
-
-    companyName: 'The ZOO',
-    companyLogo: 'ZOO',
-
-    address: {
-      name: 'Brooklyn St, NY',
-    },
-
-    shortDescription: 'shortDescription shortDescription shortDescription',
-    longDescription: 'longDescription longDescription longDescription longDescription',
-
-    mandatorySkills: [
-      UserOptions.MOTORCYCLE_ISSURANCE,
-      CarOptions.MOTORCYCLE,
-      PropertyOptions.HOUSE,
-      PropertyOptions.GARAGE,
-    ],
-  },
-  {
-    jobId: 'random' + Math.ceil(Math.random() * 10000000),
-
-    companyName: 'The ZOO',
-    companyLogo: 'ZOO',
-
-    address: {
-      name: 'Brooklyn St, NY',
-    },
-
-    shortDescription: 'No match',
-    longDescription: 'longDescription longDescription longDescription longDescription',
-
-    mandatorySkills: [UserOptions.PAYPAL_ACCOUNT, PropertyOptions.HOUSE, PropertyOptions.GARAGE],
-  },
-]
-
-export const JobProviderContext = createContext<JobProviderContextResultType>({
-  jobs: DefaultJobs,
-})
+  return newArray
+}
 
 export const JobProvider: ViewWrapperProps = ({ children }) => {
-  return <JobProviderContext.Provider value={{ jobs: DefaultJobs }}>{children}</JobProviderContext.Provider>
+  const [loading, setLoading] = useState(false)
+  const [localJobs, setLocalJobs] = useState<Job[]>([])
+
+  const previousJobs = usePrevious(localJobs)
+
+  useEffect(() => {
+    setLoading(true)
+    getInitialState()
+      .then(setLocalJobs)
+      .finally(() => setLoading(false))
+  }, [])
+
+  const addNewJob = (job: Job) => {
+    setLocalJobs((oldJobs) => addNewJobToArray(job, oldJobs))
+  }
+
+  const removeJob = (job: Job) => {
+    setLocalJobs((oldJobs) => removeJobFromArray(job, oldJobs))
+  }
+
+  useEffect(() => {
+    if (!previousJobs) {
+      return
+    }
+
+    setLoading(true)
+    setItemAsync(StorageKey.JOBS, JSON.stringify(localJobs)).finally(() => setLoading(false))
+  }, [localJobs])
+
+  return (
+    <JobProviderContext.Provider
+      value={{
+        loading,
+        jobs: localJobs,
+        addNewJob,
+        removeJob,
+      }}
+    >
+      {children}
+    </JobProviderContext.Provider>
+  )
 }
 
-export const useJobProvider = () => {
-  return useContext(JobProviderContext)
+export const useJobProvider = (): JobProviderContextResultType => {
+  const context = useContext(JobProviderContext)
+
+  if (!context) {
+    throw new Error('Using useJobProvider outside of JobProvider')
+  }
+
+  return context
 }
