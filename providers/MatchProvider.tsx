@@ -19,12 +19,15 @@ export const getMatchUnmatch = (user: User, jobs: Job[]) => {
   const matched: Job[] = []
   const unmatched: Job[] = []
 
-  jobs.forEach((job) => {
-    const jobMatchedSuccssfully = job.mandatorySkills
-      .map((mandatorySkill) => user.skills.find((userSkill) => userSkill === mandatorySkill))
-      .filter((possiblyMatchedSkill) => possiblyMatchedSkill)
+  const userSkillObj = user.skills.reduce((acc, curr) => {
+    acc[curr] = curr
+    return acc
+  }, {})
 
-    if (jobMatchedSuccssfully) {
+  jobs.forEach((job) => {
+    const missingMatch = job.mandatorySkills.find((mandatorySkill) => !userSkillObj[mandatorySkill])
+
+    if (!missingMatch) {
       matched.push(job)
     } else {
       unmatched.push(job)
