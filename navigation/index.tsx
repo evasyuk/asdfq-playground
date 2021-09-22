@@ -16,7 +16,7 @@ import ModalScreen from '../screens/ModalScreen'
 import NotFoundScreen from '../screens/NotFoundScreen'
 import MatchingScreen from '../screens/MatchingScreen/MatchingScreen'
 import Jobs from '../screens/JobsScreen'
-import UserProfileScreen from '../screens/UserProfileScreen'
+import UserProfileScreen from '../screens/UserScreen/UserScreen'
 
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types'
 
@@ -57,7 +57,7 @@ function BottomTabNavigator() {
 
   return (
     <BottomTab.Navigator
-      initialRouteName="MatchingTab"
+      initialRouteName="UserProfileTab"
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme].tint,
       }}

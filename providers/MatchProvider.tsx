@@ -15,7 +15,7 @@ export const MatchProviderContext = createContext<MatchProviderContextResultType
   unmatched: [],
 })
 
-export const getMatchUnmatch = (user: User, jobs: Job[]) => {
+export const getMatchUnmatch = (user: User, jobs: Job[]): MatchProviderContextResultType => {
   const matched: Job[] = []
   const unmatched: Job[] = []
 
@@ -49,6 +49,6 @@ export const MatchProvider: ViewWrapperProps = ({ children }) => {
   return <MatchProviderContext.Provider value={{ matched, unmatched }}>{children}</MatchProviderContext.Provider>
 }
 
-export const useMatchProvider = () => {
+export const useMatchProvider = (): MatchProviderContextResultType => {
   return useContext(MatchProviderContext)
 }

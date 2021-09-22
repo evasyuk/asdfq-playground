@@ -1,12 +1,11 @@
 import { TouchableOpacity } from 'react-native-gesture-handler'
-import stc from 'string-to-color'
 import { Dimensions, StyleSheet } from 'react-native'
 
 import { Job } from '../../providers'
 import { Text, View } from '../../components/Themed'
-import { getFontColor } from '../../utils/getFontColor'
 import LayoutConst from '../../constants/Layout'
 import { useMemo } from 'react'
+import { Avatar } from '../../components/Avatar'
 
 const width = Dimensions.get('window').width
 
@@ -20,7 +19,6 @@ export const keyExtractor = (item) => `MatchingScreen.job.${item.jobId}`
 
 export const JobListItem = ({ item, onPress, index }: JobListItemType) => {
   const companyName = useMemo(() => item?.companyName || '??', [item.companyName])
-  const backgroundColor = useMemo(() => stc(companyName), [companyName])
   const viewWrapperStyle = useMemo(() => (index === 0 ? styles.firstViewWrapper : styles.viewWrapper), [index])
 
   return (
@@ -35,25 +33,7 @@ export const JobListItem = ({ item, onPress, index }: JobListItemType) => {
             {item.address.name}
           </Text>
         </View>
-        <View
-          style={[
-            styles.avatarWrapper,
-            {
-              backgroundColor,
-            },
-          ]}
-        >
-          <Text
-            style={[
-              styles.avatarText,
-              {
-                color: getFontColor(backgroundColor),
-              },
-            ]}
-          >
-            {companyName.substr(0, 2).toUpperCase()}
-          </Text>
-        </View>
+        <Avatar title={companyName} />
       </View>
     </TouchableOpacity>
   )

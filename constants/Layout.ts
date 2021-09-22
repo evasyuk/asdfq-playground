@@ -10,7 +10,7 @@ export default {
   },
   isSmallDevice: width < 375,
   shadow: {
-    backgroundColor: 'transparent', // shadow does not work without backgroundColor
+    backgroundColor: 'transparent', // backgroundColor is required in final style
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
