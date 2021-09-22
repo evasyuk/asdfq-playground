@@ -1,6 +1,8 @@
+import { SafeAreaProvider } from 'react-native-safe-area-context'
 import { UserProvider } from './UserProvider'
 import { JobProvider } from './JobProvider'
 import { MatchProvider } from './MatchProvider'
+import { ChildrenProps } from '../types'
 
 export enum CarOptions {
   FIVE_DOOR_CAR = 'FIVE_DOOR_CAR',
@@ -46,8 +48,14 @@ export type User = {
 }
 
 export type Job = {
+  jobId: string
+
   companyName: string
   companyLogo: string
+
+  address: {
+    name: string
+  }
 
   shortDescription: string
   longDescription: string
@@ -55,13 +63,15 @@ export type Job = {
   mandatorySkills: SkillOption[]
 }
 
-const Providers = ({ chilldren }: { chilldren: JSX.Element }): JSX.Element => {
+const Providers = ({ children }: ChildrenProps): JSX.Element => {
   return (
-    <UserProvider>
-      <JobProvider>
-        <MatchProvider>{chilldren}</MatchProvider>
-      </JobProvider>
-    </UserProvider>
+    <SafeAreaProvider>
+      <UserProvider>
+        <JobProvider>
+          <MatchProvider>{children}</MatchProvider>
+        </JobProvider>
+      </UserProvider>
+    </SafeAreaProvider>
   )
 }
 

@@ -3,20 +3,17 @@ import { createContext } from 'react'
 import { useJobProvider } from './JobProvider'
 import { useUserProvider } from './UserProvider'
 import { Job, User } from './index'
+import { ViewWrapperProps } from '../types'
 
 type MatchProviderContextResultType = {
   matched: Job[]
   unmatched: Job[]
 }
 
-type Props = { children: JSX.Element }
-type MatchProviderType = (props: Props) => JSX.Element
-
-export const MatchProviderContext =
-  createContext<MatchProviderContextResultType>({
-    matched: [],
-    unmatched: [],
-  })
+export const MatchProviderContext = createContext<MatchProviderContextResultType>({
+  matched: [],
+  unmatched: [],
+})
 
 export const getMatchUnmatch = (user: User, jobs: Job[]) => {
   const matched: Job[] = []
@@ -24,9 +21,7 @@ export const getMatchUnmatch = (user: User, jobs: Job[]) => {
 
   jobs.forEach((job) => {
     const jobMatchedSuccssfully = job.mandatorySkills
-      .map((mandatorySkill) =>
-        user.skills.find((userSkill) => userSkill === mandatorySkill),
-      )
+      .map((mandatorySkill) => user.skills.find((userSkill) => userSkill === mandatorySkill))
       .filter((possiblyMatchedSkill) => possiblyMatchedSkill)
 
     if (jobMatchedSuccssfully) {
@@ -42,17 +37,13 @@ export const getMatchUnmatch = (user: User, jobs: Job[]) => {
   }
 }
 
-export const MatchProvider: MatchProviderType = ({ children }) => {
+export const MatchProvider: ViewWrapperProps = ({ children }) => {
   const { jobs } = useJobProvider()
   const { user } = useUserProvider()
 
   const { matched, unmatched } = getMatchUnmatch(user, jobs)
 
-  return (
-    <MatchProviderContext.Provider value={{ matched, unmatched }}>
-      {children}
-    </MatchProviderContext.Provider>
-  )
+  return <MatchProviderContext.Provider value={{ matched, unmatched }}>{children}</MatchProviderContext.Provider>
 }
 
 export const useMatchProvider = () => {
