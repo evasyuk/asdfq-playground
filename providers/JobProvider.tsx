@@ -11,6 +11,7 @@ type JobProviderContextResultType = {
 
   addNewJob: (Job) => void
   removeJob: (Job) => void
+  editJob: (Job) => void
 }
 
 const getInitialState = async (): Promise<Job[]> => {
@@ -61,6 +62,8 @@ export const JobProvider: ViewWrapperProps = ({ children }) => {
     setLocalJobs((oldJobs) => removeJobFromArray(job, oldJobs))
   }
 
+  const editJob = () => {}
+
   useEffect(() => {
     if (!previousJobs) {
       return
@@ -77,6 +80,7 @@ export const JobProvider: ViewWrapperProps = ({ children }) => {
         jobs: localJobs,
         addNewJob,
         removeJob,
+        editJob,
       }}
     >
       {children}

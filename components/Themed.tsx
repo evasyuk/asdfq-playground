@@ -3,7 +3,7 @@
  * https://docs.expo.io/guides/color-schemes/
  */
 
-import { Text as DefaultText, View as DefaultView, TextInput as DefaultInput } from 'react-native'
+import { Text as DefaultText, View as DefaultView, TextInput as DefaultInput, StyleSheet } from 'react-native'
 
 import Colors from '../constants/Colors'
 import useColorScheme from '../hooks/useColorScheme'
@@ -35,7 +35,7 @@ export function Input(props: InputProps) {
   const { style, lightColor, darkColor, ...otherProps } = props
   const color = useThemeColor({ light: lightColor, dark: darkColor }, 'text')
 
-  return <DefaultInput style={[{ color }, style]} {...otherProps} />
+  return <DefaultInput style={[{ color }, styles.input, style]} {...otherProps} />
 }
 
 export function Text(props: TextProps) {
@@ -51,3 +51,15 @@ export function View(props: ViewProps) {
 
   return <DefaultView style={[{ backgroundColor }, style]} {...otherProps} />
 }
+
+const styles = StyleSheet.create({
+  input: {
+    width: '100%',
+    borderWidth: 1,
+    borderRadius: 5,
+    borderColor: 'black',
+    fontSize: 18,
+    paddingHorizontal: 10,
+    marginTop: 10,
+  },
+})

@@ -7,9 +7,13 @@ import { BottomTabScreenProps } from '@react-navigation/bottom-tabs'
 import { CompositeScreenProps, NavigatorScreenParams } from '@react-navigation/native'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 
+import { AddEditProps } from './screens/AddEditScreen/AddEditScreen'
+
 declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace
   namespace ReactNavigation {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     type RootParamList = RootStackParamList
   }
 }
@@ -21,7 +25,7 @@ export type ViewWrapperProps = (props: ChildrenProps) => JSX.Element
 export type RootStackParamList = {
   Root: NavigatorScreenParams<RootTabParamList> | undefined
   Modal: undefined
-  NotFound: undefined
+  AddEdit: NavigatorScreenParams<AddEditProps> | undefined
   SplashScreen: undefined
 }
 

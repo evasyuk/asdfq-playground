@@ -40,14 +40,8 @@ export default (): JSX.Element => {
           <Avatar title={`${user.name} ${user.surname}`} size={100} />
 
           <View style={styles.inputWrapper}>
+            <Input placeholder="Please, enter your name" value={user.name} onChangeText={(text) => setUserName(text)} />
             <Input
-              style={styles.input}
-              placeholder="Please, enter your name"
-              value={user.name}
-              onChangeText={(text) => setUserName(text)}
-            />
-            <Input
-              style={styles.input}
               placeholder="Please, enter your surname"
               value={user.surname}
               onChangeText={(text) => setUserSurname(text)}
@@ -57,7 +51,7 @@ export default (): JSX.Element => {
 
         <SkillSection
           t={t}
-          title={'UserOptions'}
+          title={'User'}
           options={UserOptions}
           enabledOptions={userSkillsObj}
           onPress={setUserSkills}
@@ -65,7 +59,7 @@ export default (): JSX.Element => {
 
         <SkillSection
           t={t}
-          title={'CarOptions'}
+          title={'Transport'}
           options={CarOptions}
           enabledOptions={userSkillsObj}
           onPress={setUserSkills}
@@ -73,7 +67,7 @@ export default (): JSX.Element => {
 
         <SkillSection
           t={t}
-          title={'PropertyOptions'}
+          title={'Property'}
           options={PropertyOptions}
           enabledOptions={userSkillsObj}
           onPress={setUserSkills}
@@ -88,15 +82,6 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   inputWrapper: { width: '100%', marginVertical: 20 },
-  input: {
-    width: '100%',
-    borderWidth: 1,
-    borderRadius: 5,
-    borderColor: 'black',
-    fontSize: 18,
-    paddingHorizontal: 10,
-    marginTop: 10,
-  },
   scrollViewContainer: { width: '100%', paddingHorizontal: 30 },
   headerContainer: { alignItems: 'center', paddingTop: 30 },
 })

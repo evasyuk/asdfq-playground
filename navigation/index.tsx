@@ -13,12 +13,12 @@ import { ColorSchemeName, Pressable } from 'react-native'
 import Colors from '../constants/Colors'
 import useColorScheme from '../hooks/useColorScheme'
 import ModalScreen from '../screens/ModalScreen'
-import NotFoundScreen from '../screens/NotFoundScreen'
 import MatchingScreen from '../screens/MatchingScreen/MatchingScreen'
 import Jobs from '../screens/JobsScreen/JobsScreen'
 import UserProfileScreen from '../screens/UserScreen/UserScreen'
 
-import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types'
+import { RootStackParamList, RootStackScreenProps, RootTabParamList, RootTabScreenProps } from '../types'
+import AddEditScreen from '../screens/AddEditScreen/AddEditScreen'
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -38,7 +38,15 @@ function RootNavigator() {
   return (
     <Stack.Navigator>
       <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
-      <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
+      <Stack.Screen
+        name="AddEdit"
+        component={AddEditScreen}
+        options={({ route: { params } }: RootStackScreenProps<'AddEdit'>) => ({
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
+          title: params?.isEdit ? 'Edit job' : 'Add job',
+        })}
+      />
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
         <Stack.Screen name="Modal" component={ModalScreen} />
       </Stack.Group>

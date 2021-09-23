@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { createContext } from 'react'
 import { useJobProvider } from './JobProvider'
 import { useUserProvider } from './UserProvider'
@@ -43,12 +43,18 @@ export const getMatchUnmatch = (user: User, jobs: Job[]): MatchProviderContextRe
 }
 
 export const MatchProvider: ViewWrapperProps = ({ children }) => {
-  const { jobs } = useJobProvider()
-  const { user } = useUserProvider()
+  const [localState, setLocalState] = useState({ matched: [] as Job[], unmatched: [] as Job[] })
+  const { jobs, loading: jobLoading } = useJobProvider()
+  const { user, loading: userLoading } = useUserProvider()
 
-  const { matched, unmatched } = getMatchUnmatch(user, jobs)
+  useEffect(() => {
+    if (!jobLoading && !userLoading) {
+      const { matched, unmatched } = getMatchUnmatch(user, jobs)
+      setLocalState({ matched, unmatched })
+    }
+  }, [jobLoading, userLoading])
 
-  return <MatchProviderContext.Provider value={{ matched, unmatched }}>{children}</MatchProviderContext.Provider>
+  return <MatchProviderContext.Provider value={localState}>{children}</MatchProviderContext.Provider>
 }
 
 export const useMatchProvider = (): MatchProviderContextResultType => {

@@ -4,6 +4,7 @@ import { createContext, useContext, useEffect, useState } from 'react'
 import { SkillOption, User } from './index'
 import { ViewWrapperProps } from '../types'
 import { getItemAsync, setItemAsync, StorageKey } from '../utils/asyncStorage'
+import { addSkill, removeSkill } from '../utils/skills'
 
 type UserProviderContextResultType = {
   loading: boolean
@@ -40,27 +41,8 @@ export const UserProvider: ViewWrapperProps = ({ children }) => {
   const setUserSurname = (surname) => setLocalUser((oldUser) => ({ ...oldUser, surname }))
 
   const setUserSkills = (isAdded, skill) => {
-    const addSkill = (oldArray: Array<SkillOption>) => {
-      const newArray = oldArray.slice()
-
-      newArray.push(skill)
-
-      return newArray
-    }
-
-    const removeSkill = (oldArray: Array<SkillOption>) => {
-      const newArray = oldArray.slice()
-      const index = newArray.indexOf(skill)
-
-      if (index > -1) {
-        newArray.splice(index, 1)
-      }
-
-      return newArray
-    }
-
     setLocalUser((oldUser) => {
-      return { ...oldUser, skills: isAdded ? addSkill(oldUser.skills) : removeSkill(oldUser.skills) }
+      return { ...oldUser, skills: isAdded ? addSkill(oldUser.skills, skill) : removeSkill(oldUser.skills, skill) }
     })
   }
 

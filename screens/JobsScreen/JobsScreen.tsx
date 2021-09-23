@@ -6,12 +6,23 @@ import { NoDataToShow } from '../../providers/NoDataToShow'
 import { JobListItem, JobListItemType, keyExtractor } from '../../components/JobListItem'
 import { useJobProvider } from '../../providers/JobProvider'
 import { FloatActionButton } from '../../components/FloatActionButton'
+import { useNavigation } from '@react-navigation/native'
 
 export default (): JSX.Element => {
   const { jobs: data } = useJobProvider()
+  const navigation = useNavigation()
+
+  console.log('jobs', data)
+
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  const onAddItem = useCallback(() => navigation.navigate('AddEdit', { isEdit: false }), [])
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  const onEditItem = useCallback((item) => navigation.navigate('AddEdit', { isEdit: true, job: item }), [])
 
   const renderItem = useCallback(
-    (params: JobListItemType) => <JobListItem onPress={() => console.log('?')} {...params} />,
+    (params: JobListItemType) => <JobListItem onPress={() => onEditItem(params.item)} {...params} />,
     [],
   )
 
@@ -20,7 +31,7 @@ export default (): JSX.Element => {
       <View style={styles.container}>
         <NoDataToShow />
 
-        <FloatActionButton onPress={() => console.log('? ?')} />
+        <FloatActionButton onPress={onAddItem} />
       </View>
     )
   }
@@ -30,7 +41,7 @@ export default (): JSX.Element => {
       <View style={[styles.container]}>
         <FlatList data={data} renderItem={renderItem} keyExtractor={keyExtractor} />
 
-        <FloatActionButton onPress={() => console.log('? ?')} />
+        <FloatActionButton onPress={onAddItem} />
       </View>
     </View>
   )
