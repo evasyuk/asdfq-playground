@@ -35,6 +35,8 @@ const EmptyJob = {
 }
 
 export default (): JSX.Element | null => {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   const { params } = useRoute<'AddEdit'>()
   const { t } = useI18N()
   const { setOptions, goBack } = useNavigation()
@@ -54,8 +56,8 @@ export default (): JSX.Element | null => {
       editJob(localJob)
     } else {
       addNewJob(localJob)
-      goBack()
     }
+    goBack()
   }, [localJob])
 
   useEffect(() => {

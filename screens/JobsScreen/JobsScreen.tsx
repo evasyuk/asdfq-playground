@@ -9,10 +9,8 @@ import { FloatActionButton } from '../../components/FloatActionButton'
 import { useNavigation } from '@react-navigation/native'
 
 export default (): JSX.Element => {
-  const { jobs: data } = useJobProvider()
+  const { jobs: data, removeJob } = useJobProvider()
   const navigation = useNavigation()
-
-  console.log('jobs', data)
 
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
@@ -20,9 +18,12 @@ export default (): JSX.Element => {
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   const onEditItem = useCallback((item) => navigation.navigate('AddEdit', { isEdit: true, job: item }), [])
+  const onDeleteItem = useCallback((item) => removeJob(item), [])
 
   const renderItem = useCallback(
-    (params: JobListItemType) => <JobListItem onPress={() => onEditItem(params.item)} {...params} />,
+    (params: JobListItemType) => (
+      <JobListItem onPress={() => onEditItem(params.item)} onLongPress={() => onDeleteItem(params.item)} {...params} />
+    ),
     [],
   )
 

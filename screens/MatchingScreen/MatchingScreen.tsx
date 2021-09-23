@@ -7,11 +7,19 @@ import { NoDataToShow } from '../../providers/NoDataToShow'
 import { JobListItem, JobListItemType, keyExtractor } from '../../components/JobListItem'
 import { useNavigation } from '@react-navigation/native'
 import { SwitchMatchingButton } from './SwitchMatchingButton'
+import { useJobProvider } from '../../providers/JobProvider'
 
 export default function MatchingScreen() {
   const [isMatchMode, setMatchMode] = useState(true)
   const { matched, unmatched } = useMatchProvider()
+  const { removeJob } = useJobProvider()
   const { setOptions } = useNavigation()
+  const navigation = useNavigation()
+
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  const onEditItem = useCallback((item) => navigation.navigate('AddEdit', { isEdit: true, job: item }), [])
+  const onDeleteItem = useCallback((item) => removeJob(item), [])
 
   useEffect(() => {
     setOptions({
@@ -22,7 +30,9 @@ export default function MatchingScreen() {
   const data = isMatchMode ? matched : unmatched
 
   const renderItem = useCallback(
-    (params: JobListItemType) => <JobListItem onPress={() => console.log('?')} {...params} />,
+    (params: JobListItemType) => (
+      <JobListItem onPress={() => onEditItem(params.item)} onLongPress={() => onDeleteItem(params.item)} {...params} />
+    ),
     [],
   )
 

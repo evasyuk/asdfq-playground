@@ -24,7 +24,7 @@ const EMPTY_USER = {
 } as User
 
 const getInitialState = async (): Promise<User> => {
-  const encodedUser = (await getItemAsync<string>(StorageKey.USER)) || '{}'
+  const encodedUser = (await getItemAsync<string>(StorageKey.USER)) || JSON.stringify(EMPTY_USER)
 
   return JSON.parse(encodedUser) as User
 }

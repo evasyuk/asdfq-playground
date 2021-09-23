@@ -13,16 +13,17 @@ export type JobListItemType = {
   item: Job
   index: number
   onPress?: () => void
+  onLongPress?: () => void
 }
 
 export const keyExtractor = (item) => `MatchingScreen.job.${item.jobId}`
 
-export const JobListItem = ({ item, onPress, index }: JobListItemType) => {
+export const JobListItem = ({ item, onPress, onLongPress, index }: JobListItemType) => {
   const companyName = useMemo(() => item?.companyName || '??', [item.companyName])
   const viewWrapperStyle = useMemo(() => (index === 0 ? styles.firstViewWrapper : styles.viewWrapper), [index])
 
   return (
-    <TouchableOpacity key={keyExtractor(item)} onPress={onPress} activeOpacity={0.5}>
+    <TouchableOpacity key={keyExtractor(item)} onPress={onPress} onLongPress={onLongPress} activeOpacity={0.5}>
       <View style={viewWrapperStyle}>
         <View style={styles.textWrapper}>
           <Text numberOfLines={1} style={styles.textShortDescription}>

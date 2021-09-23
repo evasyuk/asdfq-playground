@@ -41,6 +41,17 @@ const removeJobFromArray = (job: Job, oldArray: Job[]) => {
   return newArray
 }
 
+const replaceJobInArray = (job: Job, oldArray: Job[]) => {
+  const newArray = oldArray.slice()
+  const index = newArray.indexOf(job) // TODO: lookup by ID
+
+  if (index > -1) {
+    newArray[index] = job
+  }
+
+  return newArray
+}
+
 export const JobProvider: ViewWrapperProps = ({ children }) => {
   const [loading, setLoading] = useState(false)
   const [localJobs, setLocalJobs] = useState<Job[]>([])
@@ -62,7 +73,9 @@ export const JobProvider: ViewWrapperProps = ({ children }) => {
     setLocalJobs((oldJobs) => removeJobFromArray(job, oldJobs))
   }
 
-  const editJob = () => {}
+  const editJob = (job: Job) => {
+    setLocalJobs((oldJobs) => replaceJobInArray(job, oldJobs))
+  }
 
   useEffect(() => {
     if (!previousJobs) {
