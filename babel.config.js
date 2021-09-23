@@ -5,6 +5,16 @@ module.exports = function (api) {
     plugins: [
       'macros',
       [
+        'module-resolver',
+        {
+          root: ['./'],
+          extensions: ['.tsx', '.ts'],
+          alias: {
+            '@components': '../components',
+          },
+        },
+      ],
+      [
         '@babel/plugin-transform-react-jsx',
         {
           runtime: 'automatic',
