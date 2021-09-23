@@ -1,0 +1,23 @@
+{
+  "en": {
+    "CAR_ISSURANCE": "Car issurance",
+    "MOTORCYCLE_ISSURANCE": "Motorcycle issurance",
+    "LIABILITY_ISSURANCE": "Liability issurance",
+    "DRIVER_LICENSE": "Driver license",
+    "SOCIAL_SECURITY_NUMBER": "Social security number",
+    "WORK_PERMIT": "Work permit",
+    "MASSAGE_QUALIFICATION": "Massage qualification",
+    "PAYPAL_ACCOUNT": "Paypal account",
+    "FIVE_DOOR_CAR": "Five door car",
+    "FOUR_DOOR_CAR": "Four door car",
+    "THREE_DOOR_CAR": "Three door car",
+    "TWO_DOOR_CAR": "Two door car",
+    "SCOOTER": "Scooter",
+    "BIKE": "BIKE",
+    "MOTORCYCLE": "Motorcycle",
+    "HOUSE": "House",
+    "APPARTMENT": "Apartment",
+    "STORAGE_PLACE": "Storage place",
+    "GARAGE": "Garage"
+  }
+}
