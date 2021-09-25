@@ -1,19 +1,20 @@
 import usePrevious from 'react-use/lib/usePrevious'
 import { createContext, useContext, useEffect, useState } from 'react'
 
-import { SkillOption, User } from './index'
+import { getItemAsync, setItemAsync, StorageKey } from 'utils/asyncStorage'
+import { addSkill, removeSkill } from 'utils/skills'
+
 import { ViewWrapperProps } from '../types'
-import { getItemAsync, setItemAsync, StorageKey } from '../utils/asyncStorage'
-import { addSkill, removeSkill } from '../utils/skills'
+import { SkillOption, User } from './index'
 
 type UserProviderContextResultType = {
   loading: boolean
 
   user: User
 
-  setUserName: (string) => void
-  setUserSurname: (string) => void
-  setUserSkills: (boolean, SkillOption) => void
+  setUserName: (name: string) => void
+  setUserSurname: (surname: string) => void
+  setUserSkills: (isAdded: boolean, skill: SkillOption) => void
 }
 
 const EMPTY_USER = {
@@ -77,8 +78,8 @@ export const UserProvider: ViewWrapperProps = ({ children }) => {
   )
 }
 
-export const useUserProvider = () => {
-  const context = useContext(UserProviderContext)
+export const useUserProvider = (): UserProviderContextResultType => {
+  const context = useContext<UserProviderContextResultType | null>(UserProviderContext)
 
   if (!context) {
     throw new Error('Using useUserProvider outside of UserProvider')

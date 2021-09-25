@@ -1,4 +1,4 @@
-import { SkillOption } from '../providers'
+import { SkillOption } from 'providers'
 
 export const addSkill = (oldArray: Array<SkillOption>, skill: SkillOption): Array<SkillOption> => {
   const newArray = oldArray.slice()

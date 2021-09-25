@@ -10,17 +10,17 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import * as React from 'react'
 import { ColorSchemeName, Pressable } from 'react-native'
 
-import Colors from '../constants/Colors'
-import useColorScheme from '../hooks/useColorScheme'
-import ModalScreen from '../screens/ModalScreen'
-import MatchingScreen from '../screens/MatchingScreen/MatchingScreen'
-import Jobs from '../screens/JobsScreen/JobsScreen'
-import UserProfileScreen from '../screens/UserScreen/UserScreen'
+import Colors from 'constants/Colors'
+import useColorScheme from 'hooks/useColorScheme'
+import ModalScreen from 'screens/ModalScreen'
+import MatchingScreen from 'screens/MatchingScreen/MatchingScreen'
+import Jobs from 'screens/JobsScreen/JobsScreen'
+import UserProfileScreen from 'screens/UserScreen/UserScreen'
+import AddEditScreen from 'screens/AddEditScreen/AddEditScreen'
 
 import { RootStackParamList, RootStackScreenProps, RootTabParamList, RootTabScreenProps } from '../types'
-import AddEditScreen from '../screens/AddEditScreen/AddEditScreen'
 
-export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
+export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }): JSX.Element {
   return (
     <NavigationContainer theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <RootNavigator />
@@ -116,5 +116,5 @@ function TabBarIcon(props: {
   name: React.ComponentProps<typeof FontAwesome>['name'],
   color: string
 }) {
-  return <FontAwesome size={30} style={{ marginBottom: -3 }} {...props} />
+  return <FontAwesome size={22} style={{ marginBottom: -3 }} {...props} />
 }

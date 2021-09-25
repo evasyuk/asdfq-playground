@@ -1,13 +1,14 @@
-import { FlatList, StyleSheet } from 'react-native'
-
-import { View } from '../../components/Themed'
-import { useMatchProvider } from '../../providers/MatchProvider'
 import { useCallback, useEffect, useState } from 'react'
-import { NoDataToShow } from '../../providers/NoDataToShow'
-import { JobListItem, JobListItemType, keyExtractor } from '../../components/JobListItem'
+import { FlatList, StyleSheet } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
+
+import { View } from 'components/Themed'
+import { useMatchProvider } from 'providers/MatchProvider'
+import { NoDataToShow } from 'providers/NoDataToShow'
+import { JobListItem, JobListItemType, keyExtractor } from 'components/JobListItem'
+import { useJobProvider } from 'providers/JobProvider'
+
 import { SwitchMatchingButton } from './SwitchMatchingButton'
-import { useJobProvider } from '../../providers/JobProvider'
 
 export default function MatchingScreen() {
   const [isMatchMode, setMatchMode] = useState(true)

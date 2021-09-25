@@ -3,22 +3,22 @@ import { useCallback, useEffect, useMemo, useState } from 'react'
 import { StyleSheet } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
 
-import { CarOptions, Job, PropertyOptions, SkillOption, UserOptions } from '../../providers'
-import { View, Input } from '../../components/Themed'
-import { Avatar } from '../../components/Avatar'
-import { SkillSection } from '../../components/SkillSection'
-import { useI18N } from '../../hooks/useI18N'
+import { CarOptions, Job, PropertyOptions, SkillOption, UserOptions } from 'providers'
+import { useJobProvider } from 'providers/JobProvider'
+import { View, Input } from 'components/Themed'
+import { Avatar } from 'components/Avatar'
+import { SkillSection } from 'components/SkillSection'
+import { useI18N } from 'hooks/useI18N'
+import { addSkill, removeSkill } from 'utils/skills'
 
-import { addSkill, removeSkill } from '../../utils/skills'
 import { SaveIcon } from './SaveIcon'
-import { useJobProvider } from '../../providers/JobProvider'
 
 export type AddEditProps = {
   isEdit: boolean
   job: Job | undefined
 }
 
-const EmptyJob = {
+const getEmptyJob = (): Job => ({
   jobId: 'random' + Math.ceil(Math.random() * 10000000),
 
   companyName: '',
@@ -32,7 +32,7 @@ const EmptyJob = {
   longDescription: '',
 
   mandatorySkills: [],
-}
+})
 
 export default (): JSX.Element | null => {
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -41,7 +41,7 @@ export default (): JSX.Element | null => {
   const { t } = useI18N()
   const { setOptions, goBack } = useNavigation()
   const { addNewJob, editJob } = useJobProvider()
-  const [localJob, setLocalJob] = useState<Job>(params.isEdit ? (params.job as Job) : (EmptyJob as Job))
+  const [localJob, setLocalJob] = useState<Job>(params.isEdit ? (params.job as Job) : (getEmptyJob() as Job))
 
   const [isValid, setValid] = useState(false)
 

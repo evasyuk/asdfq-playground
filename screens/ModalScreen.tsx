@@ -3,6 +3,7 @@ import { Platform, StyleSheet } from 'react-native'
 
 import { Text, View } from '../components/Themed'
 
+// not used right now, but would be used for settings further
 export default function ModalScreen() {
   return (
     <View style={styles.container}>

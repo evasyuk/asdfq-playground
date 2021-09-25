@@ -2,8 +2,16 @@
   "root": true,
   "parser": "@typescript-eslint/parser",
   "plugins": [
-    "@typescript-eslint", "react", "prettier"
+    "import", "@typescript-eslint", "react", "prettier"
   ],
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "paths": ["./"]
+      },
+      "babel-module": {}
+    }
+  },
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/eslint-recommended",

@@ -1,8 +1,9 @@
-import { View } from '../../components/Themed'
 import { StyleSheet } from 'react-native'
 
 import { FontAwesome } from '@expo/vector-icons'
 import { TouchableOpacity } from 'react-native-gesture-handler'
+
+import { View } from 'components/Themed'
 
 export const SaveIcon = ({ enabled, onPress }: { enabled: boolean; onPress: () => void }): JSX.Element => (
   <View style={[styles.iconWrapper, enabled ? {} : { opacity: 0.5 }]}>

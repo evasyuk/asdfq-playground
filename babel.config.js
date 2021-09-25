@@ -8,9 +8,13 @@ module.exports = function (api) {
         'module-resolver',
         {
           root: ['./'],
-          extensions: ['.tsx', '.ts'],
+          extensions: ['.js', '.jsx', '.tsx', '.ts'],
           alias: {
-            '@components': '../components',
+            components: './components',
+            hooks: './hooks',
+            utils: './utils',
+            providers: './providers',
+            constants: './constants',
           },
         },
       ],

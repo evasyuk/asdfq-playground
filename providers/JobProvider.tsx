@@ -1,17 +1,19 @@
 import { createContext, useContext, useEffect, useState } from 'react'
-import { Job } from './'
-import { ViewWrapperProps } from '../types'
-import { getItemAsync, setItemAsync, StorageKey } from '../utils/asyncStorage'
 import usePrevious from 'react-use/lib/usePrevious'
+
+import { getItemAsync, setItemAsync, StorageKey } from 'utils/asyncStorage'
+
+import { ViewWrapperProps } from '../types'
+import { Job } from './'
 
 type JobProviderContextResultType = {
   loading: boolean
 
   jobs: Job[]
 
-  addNewJob: (Job) => void
-  removeJob: (Job) => void
-  editJob: (Job) => void
+  addNewJob: (job: Job) => void
+  removeJob: (job: Job) => void
+  editJob: (job: Job) => void
 }
 
 const getInitialState = async (): Promise<Job[]> => {

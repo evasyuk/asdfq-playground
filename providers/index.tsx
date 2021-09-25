@@ -1,7 +1,9 @@
 import { SafeAreaProvider } from 'react-native-safe-area-context'
-import { UserProvider } from './UserProvider'
-import { JobProvider } from './JobProvider'
-import { MatchProvider } from './MatchProvider'
+
+import { UserProvider } from 'providers/UserProvider'
+import { JobProvider } from 'providers/JobProvider'
+import { MatchProvider } from 'providers/MatchProvider'
+
 import { ChildrenProps } from '../types'
 
 export enum CarOptions {

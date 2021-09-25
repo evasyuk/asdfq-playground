@@ -1,12 +1,12 @@
-import { FlatList, StyleSheet } from 'react-native'
-
-import { View } from '../../components/Themed'
 import { useCallback } from 'react'
-import { NoDataToShow } from '../../providers/NoDataToShow'
-import { JobListItem, JobListItemType, keyExtractor } from '../../components/JobListItem'
-import { useJobProvider } from '../../providers/JobProvider'
-import { FloatActionButton } from '../../components/FloatActionButton'
+import { FlatList, StyleSheet } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
+
+import { View } from 'components/Themed'
+import { NoDataToShow } from 'providers/NoDataToShow'
+import { JobListItem, JobListItemType, keyExtractor } from 'components/JobListItem'
+import { useJobProvider } from 'providers/JobProvider'
+import { FloatActionButton } from 'components/FloatActionButton'
 
 export default (): JSX.Element => {
   const { jobs: data, removeJob } = useJobProvider()

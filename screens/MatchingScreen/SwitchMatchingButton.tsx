@@ -1,8 +1,8 @@
-import { View } from '../../components/Themed'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import { StyleSheet } from 'react-native'
-
 import { FontAwesome } from '@expo/vector-icons'
+
+import { View } from 'components/Themed'
 
 type SwitchMatchingButtonProps = {
   onPress: () => void

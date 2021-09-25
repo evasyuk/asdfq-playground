@@ -16,9 +16,9 @@ export type JobListItemType = {
   onLongPress?: () => void
 }
 
-export const keyExtractor = (item) => `MatchingScreen.job.${item.jobId}`
+export const keyExtractor = (item: Job): string => `MatchingScreen.job.${item.jobId}`
 
-export const JobListItem = ({ item, onPress, onLongPress, index }: JobListItemType) => {
+export const JobListItem = ({ item, onPress, onLongPress, index }: JobListItemType): JSX.Element => {
   const companyName = useMemo(() => item?.companyName || '??', [item.companyName])
   const viewWrapperStyle = useMemo(() => (index === 0 ? styles.firstViewWrapper : styles.viewWrapper), [index])
 

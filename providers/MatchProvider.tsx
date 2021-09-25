@@ -1,8 +1,9 @@
-import { useContext, useEffect, useState } from 'react'
-import { createContext } from 'react'
-import { useJobProvider } from './JobProvider'
-import { useUserProvider } from './UserProvider'
-import { Job, User } from './index'
+import { useContext, useEffect, useState, createContext } from 'react'
+
+import { useJobProvider } from 'providers/JobProvider'
+import { useUserProvider } from 'providers/UserProvider'
+import { Job, User } from 'providers'
+
 import { ViewWrapperProps } from '../types'
 
 type MatchProviderContextResultType = {

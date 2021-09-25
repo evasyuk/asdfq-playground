@@ -1,7 +1,7 @@
-import { View } from '../../components/Themed'
 import { StyleSheet } from 'react-native'
-
 import { FontAwesome } from '@expo/vector-icons'
+
+import { View } from 'components/Themed'
 
 export const LoadingIcon = (): JSX.Element => (
   <View style={styles.iconWrapper}>

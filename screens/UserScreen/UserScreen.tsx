@@ -1,15 +1,15 @@
+import { useEffect, useMemo } from 'react'
 import { StyleSheet } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
-
-import { Input, View } from '../../components/Themed'
-import { Avatar } from '../../components/Avatar'
-import { SkillOption, UserOptions, CarOptions, PropertyOptions } from '../../providers'
-
-import { useI18N } from '../../hooks/useI18N'
-import { useUserProvider } from '../../providers/UserProvider'
-import { useEffect, useMemo } from 'react'
-import { SkillSection } from '../../components/SkillSection'
 import { useNavigation } from '@react-navigation/native'
+
+import { Input, View } from 'components/Themed'
+import { Avatar } from 'components/Avatar'
+import { SkillOption, UserOptions, CarOptions, PropertyOptions } from 'providers'
+import { useI18N } from 'hooks/useI18N'
+import { useUserProvider } from 'providers/UserProvider'
+import { SkillSection } from 'components/SkillSection'
+
 import { LoadingIcon } from './LoadingIcon'
 
 export default (): JSX.Element => {
