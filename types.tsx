@@ -7,7 +7,7 @@ import { BottomTabScreenProps } from '@react-navigation/bottom-tabs'
 import { CompositeScreenProps, NavigatorScreenParams } from '@react-navigation/native'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 
-import { AddEditProps } from './screens/AddEditScreen/AddEditScreen'
+import { AddEditProps } from './modules/module-add-edit-screen/AddEditScreen'
 
 declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace

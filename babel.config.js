@@ -3,18 +3,13 @@ module.exports = function (api) {
   return {
     presets: [['module:metro-react-native-babel-preset', { useTransformReactJSXExperimental: true }]],
     plugins: [
-      'macros',
       [
         'module-resolver',
         {
           root: ['./'],
           extensions: ['.js', '.jsx', '.tsx', '.ts'],
           alias: {
-            components: './components',
-            hooks: './hooks',
-            utils: './utils',
-            providers: './providers',
-            constants: './constants',
+            '@asdfq': ['modules', 'packages'],
           },
         },
       ],

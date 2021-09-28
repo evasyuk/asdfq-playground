@@ -14,7 +14,13 @@
     "strictNullChecks": true,
     "noImplicitAny": false,
     "noUnusedParameters": true,
-    "baseUrl": "./"
+    "baseUrl": "./",
+    "paths": {
+      "@asdfq/*": [
+        "modules/*",
+        "packages/*"
+      ]
+    }
   },
   "exclude": [
     "node_modules",

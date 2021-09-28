@@ -1,10 +1,10 @@
 import { StatusBar } from 'expo-status-bar'
 
-import useCachedResources from 'hooks/useCachedResources'
-import useColorScheme from 'hooks/useColorScheme'
-import Providers from 'providers'
+import useCachedResources from 'packages/hooks/useCachedResources'
+import useColorScheme from 'packages/hooks/useColorScheme'
+import Providers from 'packages/providers'
 
-import Navigation from './navigation'
+import Navigation from './packages/navigation'
 
 export default function App(): JSX.Element | null {
   const isLoadingComplete = useCachedResources()
