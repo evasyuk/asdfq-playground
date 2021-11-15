@@ -7,21 +7,22 @@ import { Input, View } from 'packages/components/Themed'
 import { Avatar } from 'packages/components/Avatar'
 import { SkillOption, UserOptions, CarOptions, PropertyOptions } from '@asdfq/providers'
 import { useI18N } from '@asdfq/hooks/useI18N'
-import { useUserProvider } from '@asdfq/providers/UserProvider'
 import { SkillSection } from 'packages/components/SkillSection'
 
 import { LoadingIcon } from './components/LoadingIcon'
+import { useUser } from '@asdfq/state/slices/hooks/useUser'
 
 export default (): JSX.Element => {
   const { t } = useI18N()
-  const { user, setUserSkills, setUserName, setUserSurname, loading } = useUserProvider()
-
   const { setOptions } = useNavigation()
+  const { user, loading, onChangeUserName, onChangeUserSurname, onChangeUserSkills } = useUser()
 
   useEffect(() => {
     setOptions({
       headerRight: () => (loading ? <LoadingIcon /> : null),
     })
+
+    // setTimeout(temp, 4000)
   }, [loading])
 
   const userSkillsObj = useMemo(
@@ -40,12 +41,8 @@ export default (): JSX.Element => {
           <Avatar title={`${user.name} ${user.surname}`} size={100} />
 
           <View style={styles.inputWrapper}>
-            <Input placeholder="Please, enter your name" value={user.name} onChangeText={(text) => setUserName(text)} />
-            <Input
-              placeholder="Please, enter your surname"
-              value={user.surname}
-              onChangeText={(text) => setUserSurname(text)}
-            />
+            <Input placeholder="Please, enter your name" value={user.name} onChangeText={onChangeUserName} />
+            <Input placeholder="Please, enter your surname" value={user.surname} onChangeText={onChangeUserSurname} />
           </View>
         </View>
 
@@ -54,7 +51,7 @@ export default (): JSX.Element => {
           title={'User'}
           options={UserOptions}
           enabledOptions={userSkillsObj}
-          onPress={setUserSkills}
+          onPress={onChangeUserSkills}
         />
 
         <SkillSection
@@ -62,7 +59,7 @@ export default (): JSX.Element => {
           title={'Transport'}
           options={CarOptions}
           enabledOptions={userSkillsObj}
-          onPress={setUserSkills}
+          onPress={onChangeUserSkills}
         />
 
         <SkillSection
@@ -70,7 +67,7 @@ export default (): JSX.Element => {
           title={'Property'}
           options={PropertyOptions}
           enabledOptions={userSkillsObj}
-          onPress={setUserSkills}
+          onPress={onChangeUserSkills}
         />
       </ScrollView>
     </View>

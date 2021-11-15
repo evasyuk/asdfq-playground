@@ -1,6 +1,8 @@
 import { SafeAreaProvider } from 'react-native-safe-area-context'
+import { Provider } from 'react-redux'
 
-import { UserProvider } from '@asdfq/providers/UserProvider'
+import { store } from '@asdfq/state'
+
 import { JobProvider } from '@asdfq/providers/JobProvider'
 import { MatchProvider } from '@asdfq/providers/MatchProvider'
 
@@ -68,11 +70,11 @@ export type Job = {
 const Providers = ({ children }: ChildrenProps): JSX.Element => {
   return (
     <SafeAreaProvider>
-      <UserProvider>
-        <JobProvider>
+      <JobProvider>
+        <Provider store={store}>
           <MatchProvider>{children}</MatchProvider>
-        </JobProvider>
-      </UserProvider>
+        </Provider>
+      </JobProvider>
     </SafeAreaProvider>
   )
 }

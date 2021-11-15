@@ -2,9 +2,9 @@ import { createContext, useContext, useEffect, useState } from 'react'
 import usePrevious from 'react-use/lib/usePrevious'
 
 import { getItemAsync, setItemAsync, StorageKey } from '@asdfq/utils/asyncStorage'
+import { Job } from '@asdfq/providers'
 
 import { ViewWrapperProps } from '../../types'
-import { Job } from '@asdfq/providers'
 
 type JobProviderContextResultType = {
   loading: boolean

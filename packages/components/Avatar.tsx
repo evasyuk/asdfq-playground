@@ -1,5 +1,5 @@
 import { Text, View } from './Themed'
-import { getFontColor } from '../utils/getFontColor'
+import { getFontColor } from '@asdfq/utils/getFontColor'
 import { useMemo } from 'react'
 import { StyleSheet } from 'react-native'
 import stc from 'string-to-color'

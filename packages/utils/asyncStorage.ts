@@ -3,6 +3,11 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 export enum StorageKey {
   USER = 'user',
   JOBS = 'jobs',
+  TOKEN = 'token',
+}
+
+export async function removeItemAsync(key: StorageKey): Promise<void> {
+  return AsyncStorage.removeItem(key)
 }
 
 export async function setItemAsync(key: StorageKey, value: string): Promise<void> {

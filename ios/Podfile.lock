@@ -288,9 +288,11 @@ PODS:
     - React-Core (= 0.63.4)
     - React-cxxreact (= 0.63.4)
     - React-jsi (= 0.63.4)
+  - RNCAsyncStorage (1.15.9):
+    - React-Core
   - RNGestureHandler (1.10.3):
     - React-Core
-  - RNReanimated (2.2.2):
+  - RNReanimated (2.2.3):
     - DoubleConversion
     - FBLazyVector
     - FBReactNativeSpec
@@ -324,7 +326,7 @@ PODS:
     - React-RCTImage
   - UMAppLoader (2.2.0)
   - UMCore (7.1.2)
-  - UMReactNativeAdapter (6.3.7):
+  - UMReactNativeAdapter (6.3.9):
     - ExpoModulesCore
     - React-Core
     - UMCore
@@ -335,7 +337,7 @@ PODS:
 DEPENDENCIES:
   - DoubleConversion (from `../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
   - EXApplication (from `../node_modules/expo-application/ios`)
-  - EXConstants (from `../node_modules/expo-constants/ios`)
+  - EXConstants (from `../node_modules/react-native-unimodules/node_modules/expo-constants/ios`)
   - EXErrorRecovery (from `../node_modules/expo-error-recovery/ios`)
   - EXFileSystem (from `../node_modules/expo-file-system/ios`)
   - EXFont (from `../node_modules/expo-font/ios`)
@@ -374,6 +376,7 @@ DEPENDENCIES:
   - React-RCTText (from `../node_modules/react-native/Libraries/Text`)
   - React-RCTVibration (from `../node_modules/react-native/Libraries/Vibration`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
+  - "RNCAsyncStorage (from `../node_modules/@react-native-async-storage/async-storage`)"
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
@@ -393,7 +396,7 @@ EXTERNAL SOURCES:
   EXApplication:
     :path: "../node_modules/expo-application/ios"
   EXConstants:
-    :path: "../node_modules/expo-constants/ios"
+    :path: "../node_modules/react-native-unimodules/node_modules/expo-constants/ios"
   EXErrorRecovery:
     :path: "../node_modules/expo-error-recovery/ios"
   EXFileSystem:
@@ -466,6 +469,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/Libraries/Vibration"
   ReactCommon:
     :path: "../node_modules/react-native/ReactCommon"
+  RNCAsyncStorage:
+    :path: "../node_modules/@react-native-async-storage/async-storage"
   RNGestureHandler:
     :path: "../node_modules/react-native-gesture-handler"
   RNReanimated:
@@ -524,12 +529,13 @@ SPEC CHECKSUMS:
   React-RCTText: 5c51df3f08cb9dedc6e790161195d12bac06101c
   React-RCTVibration: ae4f914cfe8de7d4de95ae1ea6cc8f6315d73d9d
   ReactCommon: 73d79c7039f473b76db6ff7c6b159c478acbbb3b
+  RNCAsyncStorage: 26f25150da507524a7815f2ada06ca0967f65633
   RNGestureHandler: a479ebd5ed4221a810967000735517df0d2db211
-  RNReanimated: 6ec2460b9c6c8f3b1403bd0eaa12d359a98650e3
+  RNReanimated: 8744fb15baf4c582367d910f4f32f5097fb350cb
   RNScreens: 21b73c94c9117e1110a79ee0ee80c93ccefed8ce
   UMAppLoader: 21af63390e55c82e037fb9752d93114a80ecf16e
   UMCore: ce3a4faa010239063b8343895b29a6d97b01069d
-  UMReactNativeAdapter: bb7922210cf6fdb5768f78685f3c3a2060299119
+  UMReactNativeAdapter: d03cefd0e4e4179ab8c490408589f1c8a6c8b785
   UMTaskManagerInterface: 2be431101b73604e64fbfffcf759336f9d8fccbb
   Yoga: 4bd86afe9883422a7c4028c00e34790f560923d6
 

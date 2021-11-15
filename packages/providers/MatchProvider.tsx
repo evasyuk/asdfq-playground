@@ -1,10 +1,11 @@
 import { useContext, useEffect, useState, createContext } from 'react'
 
 import { useJobProvider } from '@asdfq/providers/JobProvider'
-import { useUserProvider } from '@asdfq/providers/UserProvider'
 import { Job, User } from '@asdfq/providers/index'
 
 import { ViewWrapperProps } from '../../types'
+import { useSelector } from 'react-redux'
+import { RootState } from '@asdfq/state'
 
 type MatchProviderContextResultType = {
   matched: Job[]
@@ -44,7 +45,7 @@ export const getMatchUnmatch = (user: User, jobs: Job[]): MatchProviderContextRe
 export const MatchProvider: ViewWrapperProps = ({ children }) => {
   const [localState, setLocalState] = useState({ matched: [] as Job[], unmatched: [] as Job[] })
   const { jobs, loading: jobLoading } = useJobProvider()
-  const { user, loading: userLoading } = useUserProvider()
+  const { user, loading: userLoading } = useSelector((state: RootState) => state.userSlice)
 
   useEffect(() => {
     if (!jobLoading && !userLoading) {

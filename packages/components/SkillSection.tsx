@@ -49,6 +49,6 @@ const styles = StyleSheet.create({
   title: { fontSize: 25, fontWeight: 'bold' },
   itemWrapper: { width: '100%', paddingHorizontal: 0, marginVertical: 5 },
   itemIconStyle: { borderColor: 'black' },
-  itemTextStyle: { fontFamily: 'JosefinSans-Regular', textDecorationLine: 'none' },
+  itemTextStyle: { textDecorationLine: 'none' },
   spacer: { height: 20 },
 })
